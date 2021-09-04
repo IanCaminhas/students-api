@@ -1,3 +1,4 @@
+import { Student, UpdateStudentSchema } from './../types/Student';
 import * as StudentsDB from "../db/students";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -5,7 +6,6 @@ import { StatusCodes } from "http-status-codes";
 export class StudentsController {
   async get(_: Request, res: Response) {
     const students = await StudentsDB.getStudents();
-
     return res.status(StatusCodes.OK).json(students);
   }
 
@@ -14,4 +14,10 @@ export class StudentsController {
 
     return res.status(StatusCodes.CREATED).json(newStudent);
   }
+
+  async update(req: Request, res: Response){
+    await StudentsDB.updateStudent(req.body)
+    return res.status(StatusCodes.OK).json('ok')
+  }
+
 }

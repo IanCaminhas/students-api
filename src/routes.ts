@@ -2,6 +2,7 @@ import { celebrate, Joi } from "celebrate";
 import express, { response } from "express";
 import { StudentsController } from "./controllers/studentController";
 import { StudentSchema } from "./types/Student";
+import { UpdateStudentSchema } from "./types/Student";
 
 const routes = express.Router();
 
@@ -15,6 +16,17 @@ routes.post(
   celebrate({ body: Joi.object().keys(StudentSchema) }),
   studentsController.create
 );
-//? Why not add an update, delete and get one routes/
+
+routes.put(
+  "/students/:studentId",
+  celebrate({ 
+    params: Joi.object().keys({studentId: Joi.number().required()}),
+    body: Joi.object().keys(UpdateStudentSchema),
+  }),
+
+  studentsController.update
+  
+);
+
 
 export default routes;
