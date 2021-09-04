@@ -3,6 +3,8 @@ import express, { response } from "express";
 import { StudentsController } from "./controllers/studentController";
 import { StudentSchema } from "./types/Student";
 import { UpdateStudentSchema } from "./types/Student";
+import { DeleteStudentSchema } from "./types/Student";
+
 
 const routes = express.Router();
 
@@ -26,6 +28,15 @@ routes.put(
 
   studentsController.update
   
+);
+
+routes.delete(
+    "/students",
+    celebrate({ 
+      body: Joi.object().keys(DeleteStudentSchema),
+    }),
+
+    studentsController.delete
 );
 
 

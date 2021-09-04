@@ -23,3 +23,8 @@ export const UpdateStudentSchema = {
   city: Joi.string(),
 
 }
+
+export const DeleteStudentSchema = {
+  id: Joi.number(),
+
+}

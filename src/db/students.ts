@@ -36,5 +36,12 @@ const updateStudent = (student: Student)=>{
   return Promise.resolve();
 };
 
+const deleteStudent = (student: Student)=> {
+  const index = students.findIndex((s)=> s.id === student.id);
+  students.splice(index,1)
 
-export { addStudent, getStudents,updateStudent };
+  return Promise.resolve(); 
+}
+
+
+export { addStudent, getStudents,updateStudent,deleteStudent};

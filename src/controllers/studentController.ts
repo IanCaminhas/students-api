@@ -20,4 +20,12 @@ export class StudentsController {
     return res.status(StatusCodes.OK).json('ok')
   }
 
+  async delete(res: Response, req: Request ){
+    await StudentsDB.deleteStudent(req.body)
+    return res.status(StatusCodes.OK).json('ok')
+  }
+
+
+
+
 }
