@@ -1,9 +1,7 @@
 import { celebrate, Joi } from "celebrate";
 import express, { response } from "express";
 import { StudentsController } from "./controllers/studentController";
-import { StudentSchema } from "./types/Student";
-import { UpdateStudentSchema } from "./types/Student";
-import { DeleteStudentSchema } from "./types/Student";
+import { StudentSchema,UpdateStudentSchema } from "./types/Student";
 
 
 const routes = express.Router();
@@ -19,25 +17,25 @@ routes.post(
   studentsController.create
 );
 
+
 routes.put(
-  "/students/:studentId",
+  "/students/:id",
   celebrate({ 
-    params: Joi.object().keys({studentId: Joi.number().required()}),
+    params: Joi.object().keys({id: Joi.number().required()}),
     body: Joi.object().keys(UpdateStudentSchema),
   }),
-
+  
   studentsController.update
   
 );
 
 routes.delete(
-    "/students",
-    celebrate({ 
-      body: Joi.object().keys(DeleteStudentSchema),
-    }),
-
+  "/students/:studentId",
+  celebrate({
+    params: Joi.object().keys({studentId: Joi.number().required()})
+  }),
+  
     studentsController.delete
 );
-
 
 export default routes;

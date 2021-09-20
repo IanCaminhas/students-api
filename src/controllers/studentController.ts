@@ -1,4 +1,3 @@
-import { Student, UpdateStudentSchema } from './../types/Student';
 import * as StudentsDB from "../db/students";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -11,17 +10,19 @@ export class StudentsController {
 
   async create(req: Request, res: Response) {
     const newStudent = await StudentsDB.addStudent(req.body);
-
     return res.status(StatusCodes.CREATED).json(newStudent);
   }
 
   async update(req: Request, res: Response){
-    await StudentsDB.updateStudent(req.body)
+    const id = await parseInt(req.params.id,10)
+    await console.log(id)
+    await StudentsDB.updateStudent(id, req.body)
     return res.status(StatusCodes.OK).json('ok')
   }
 
-  async delete(res: Response, req: Request ){
-    await StudentsDB.deleteStudent(req.body)
+  async delete(req: Request, res: Response){
+    const id = await parseInt(req.params.id,10)
+    await StudentsDB.deleteStudent(id)
     return res.status(StatusCodes.OK).json('ok')
   }
 

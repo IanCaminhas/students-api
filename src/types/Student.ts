@@ -22,9 +22,5 @@ export const UpdateStudentSchema = {
   email: Joi.string().email(),
   city: Joi.string(),
 
-}
+};
 
-export const DeleteStudentSchema = {
-  id: Joi.number(),
-
-}

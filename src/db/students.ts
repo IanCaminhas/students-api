@@ -30,14 +30,14 @@ function addStudent(student: Student) {
  */
 const getStudents = () => Promise.resolve(Object.freeze([...students]));
 
-const updateStudent = (student: Student)=>{
-  const index = students.findIndex((s)=> s.id === student.id);
+const updateStudent = (id: number ,student: Student)=>{
+  const index = students.findIndex((s)=> s.id === id);
   students[index] = {...students[index], ...student};
   return Promise.resolve();
 };
 
-const deleteStudent = (student: Student)=> {
-  const index = students.findIndex((s)=> s.id === student.id);
+const deleteStudent = (id: number)=> {
+  const index = students.findIndex((s)=> s.id === id);
   students.splice(index,1)
 
   return Promise.resolve(); 
