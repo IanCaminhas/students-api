@@ -43,5 +43,12 @@ const deleteStudent = (id: number)=> {
   return Promise.resolve(); 
 }
 
+const getStudent = (id:number) =>{
+  let student = students.find(s => s.id === id);
+  return Promise.resolve(Object.freeze(student));
+  
+}
 
-export { addStudent, getStudents,updateStudent,deleteStudent};
+
+
+export { addStudent, getStudents,updateStudent,deleteStudent,getStudent};

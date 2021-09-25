@@ -33,6 +33,21 @@ describe("Test student requests", () => {
       .then((res) => expect(res.body).toMatchObject({ id: 2, ...newStudent }));
   });
 
+
+  it("should delete student", async () => {
+
+    await supertest(app)
+      .delete(`/students/${1}`)
+      .expect(200)
+      .then((res)=>expect(res.body).toBe("ok"));
+  
+      await supertest(app)
+      .get(`/students/${1}`)
+      .then((res)=>expect(res.status).toBe(200));
+  
+  });
+  
+
   it("should update student", async () => {
     const updateStudent = {
       name: "Ian",
@@ -65,14 +80,13 @@ await supertest(app)
 
 });
 
-it("should delete student", async () => {
 
-  await supertest(app)
-    .delete(`/students/${1}`)
-    .expect(200)
-    .then((res)=>expect(res.body).toBe("ok"));
 
-});
+
+
+
+
+
 
 
 });

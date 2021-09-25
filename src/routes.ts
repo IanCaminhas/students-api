@@ -17,6 +17,16 @@ routes.post(
   studentsController.create
 );
 
+routes.get(
+  "/students/:id",
+  celebrate({
+    params: Joi.object().keys({id: Joi.number().required()}),
+  }),
+
+  studentsController.getId
+
+  );
+
 
 routes.put(
   "/students/:id",

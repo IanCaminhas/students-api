@@ -8,6 +8,14 @@ export class StudentsController {
     return res.status(StatusCodes.OK).json(students);
   }
 
+  async getId(req : Request, res: Response) {
+    const id = await parseInt(req.params.id,10)
+    const student = await StudentsDB.getStudent(id);
+    return res.status(StatusCodes.OK).json(student);
+  }
+
+
+
   async create(req: Request, res: Response) {
     const newStudent = await StudentsDB.addStudent(req.body);
     return res.status(StatusCodes.CREATED).json(newStudent);
