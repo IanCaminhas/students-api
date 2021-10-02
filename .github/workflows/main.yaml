@@ -18,7 +18,6 @@ jobs:
 
     steps:
       - name: Checkout repo
-        # Quando usamos uma action usamos o atributo uses ao invés de run
         uses: actions/checkout@v2
       - name: List all files
         run: ls
