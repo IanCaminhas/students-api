@@ -11,3 +11,14 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Hello World"
+
+  
+   listing:
+    runs-on:  windows-latest
+
+    steps:
+      - name: Checkout repo
+        # Quando usamos uma action usamos o atributo uses ao invés de run
+        uses: actions/checkout@v2
+      - name: List all files
+        run: ls
