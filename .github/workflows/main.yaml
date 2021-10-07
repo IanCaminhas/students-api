@@ -5,24 +5,6 @@ on:
     branch: main
 
 jobs:
- # hello:
-  #  runs-on: windows-latest
-
-   # steps:
-    #  - name: Say Hello
-     #   run: echo "Hello World"
-
-  # listing:
-   # name: Show our code
-  # runs-on:  windows-latest
-
-    #steps:
-      #  uses: actions/checkout@v2
-       # name: Show the directory
-       # run: ls
-     # - name: Show the index.ts
-      #  run: cat index.ts
-
     listing:
     name: Execute npm install
     runs-on:  windows-latest
