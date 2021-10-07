@@ -13,6 +13,7 @@ jobs:
         run: echo "Hello World"
 
    listing:
+    name: "Show our code"
     runs-on:  windows-latest
 
     steps:
