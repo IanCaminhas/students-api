@@ -36,4 +36,6 @@ jobs:
         runs-on: windows-latest 
         steps:
         - uses: actions/checkout@v2
-        - run: ls
+        - run: npm ci
+        - run: npm run build
+        - run: ls D:\a\students-api\students-api\dist
