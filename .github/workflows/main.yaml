@@ -12,12 +12,14 @@ jobs:
       - name: Say Hello
         run: echo "Hello World"
 
-  
    listing:
     runs-on:  windows-latest
 
     steps:
-      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: List all files
+        name: Show the directory
         run: ls
+      - name: show the index.ts
+        run: cat index.ts
+
+  
