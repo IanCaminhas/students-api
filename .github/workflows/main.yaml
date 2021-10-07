@@ -22,5 +22,6 @@ jobs:
     name: "test our API"
     runs-on: windows-latest 
       steps: 
-        -name: Run tests
+        - uses: actions/checkout@v2
+        - name: Run tests
          run: npm run test
