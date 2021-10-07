@@ -18,7 +18,7 @@ jobs:
           scope: '@octocat'
       - run: npm install
 
-   build:
+   test:
 
     runs-on: windows-latest 
 
