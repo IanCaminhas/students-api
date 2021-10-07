@@ -4,13 +4,13 @@ on:
   push:
     branch: main
 
-jobs:
-  hello:
-    runs-on: windows-latest
+#jobs:
+ # hello:
+  #  runs-on: windows-latest
 
-    steps:
-      - name: Say Hello
-        run: echo "Hello World"
+   # steps:
+    #  - name: Say Hello
+     #   run: echo "Hello World"
 
   # listing:
    # name: Show our code
