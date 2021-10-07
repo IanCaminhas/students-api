@@ -17,5 +17,16 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
       - run: npm install
+      #- run: npm run test
+      #- run: npm run build
+
+    test:
+    runs-on: windows-latest 
+    permissions: 
+      contents: read
+      packages: write 
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
       - run: npm run test
-      - run: npm run build
+         
