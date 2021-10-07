@@ -1,17 +1,18 @@
-name: Students API Pipeline
-
+name: Node.js Package
 on:
-  push:
-    branch: main
-
+  release:
+    types: [created]
 jobs:
-    listing:
-     - name: Execute npm install
-       runs-on:  windows-latest
-
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-        - name: npm install
-            run: npm install
-  
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@octocat'
+      - run: yarn
+      - run: yarn publish
