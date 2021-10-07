@@ -3,7 +3,7 @@ on:
   push:
     branch: main
 jobs:
-  build:
+  dependencies:
     runs-on: windows-latest 
     permissions: 
       contents: read
@@ -14,11 +14,8 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://npm.pkg.github.com'
-          # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
       - run: npm install
-      #- run: npm run test
-      #- run: npm run build
 
   Test:
       runs-on: windows-latest 
@@ -27,10 +24,16 @@ jobs:
         - run: npm install --save-dev jest
         - run: npm run test
   
-  buildTwo:
+  build:
       runs-on: windows-latest 
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v1
         - run: npm ci
         - run: npm run build
+
+  listing_paste_dist:
+        runs-on: windows-latest 
+         steps:
+           - uses: actions/checkout@v2
+           - run: ls dist
