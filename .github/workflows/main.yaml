@@ -1,7 +1,8 @@
-name: Node.js Package
+name: Students API Pipeline
 on:
-  release:
-    types: [created]
+  push:
+    branch: main
+
 jobs:
   build:
     runs-on: windows-latest
