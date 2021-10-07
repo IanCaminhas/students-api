@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
         name: Show the directory
         run: ls
-      - name: show the index.ts
+      - name: Show the index.ts
         run: cat index.ts
 
   
