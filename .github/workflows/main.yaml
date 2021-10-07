@@ -7,11 +7,11 @@ on:
 jobs:
     listing:
      - name: Execute npm install
-      runs-on:  windows-latest
+     - runs-on:  windows-latest
 
       steps:
-        uses: actions/checkout@v2
-        uses: actions/setup-node@v2
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
         - name: npm install
-        run: npm install
+            run: npm install
   
