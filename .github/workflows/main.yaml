@@ -18,9 +18,18 @@ jobs:
           scope: '@octocat'
       - run: npm install
 
-  test:
+   build:
+
     runs-on: windows-latest 
-      steps: 
-        - uses: actions/checkout@v2
-        - name: Run tests
-         run: npm run test
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run test
