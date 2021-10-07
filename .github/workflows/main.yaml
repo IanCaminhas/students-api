@@ -17,18 +17,4 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
       - run: npm install
-
-
-   tests:
-    runs-on: windows-latest 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install jest --save-dev
       - run: npm run test
