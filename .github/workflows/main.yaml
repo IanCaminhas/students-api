@@ -19,8 +19,7 @@ jobs:
       - run: npm install
 
 
-jobs:
-   test:
+   tests:
     runs-on: windows-latest 
     strategy:
       matrix:
