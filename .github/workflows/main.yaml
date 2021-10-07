@@ -21,6 +21,7 @@ jobs:
       #- run: npm run build
 
     test:
+    name: teste our API
     runs-on: windows-latest 
     permissions: 
       contents: read
