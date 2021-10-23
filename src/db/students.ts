@@ -1,4 +1,5 @@
-import { Student } from './../types/Student';
+import { getConnection } from 'typeorm';
+import { Student } from '../entities/Student';
 
 const students: Student[] = [
   {
@@ -15,38 +16,51 @@ const students: Student[] = [
  * @param student New student
  * @returns new student
  */
-function addStudent(student: Student) {
-  const newStudent = {
-    id: students.length ? students[students.length - 1].id! + 1 : 1,
-    ...student,
-  };
-  students.push(Object.freeze(newStudent));
-  return Promise.resolve(newStudent);
+async function addStudent(student: Student) {
+  const newStudent = new Student(student)
+
+ const connection = await getConnection().getRepository(Student)
+ await  connection.save(newStudent)
+ return newStudent
+ 
 }
 
 /**
  * Returns student list
  * @returns Students
  */
-const getStudents = () => Promise.resolve(Object.freeze([...students]));
+const getStudents = () =>getConnection().getRepository(Student).find()
 
-const updateStudent = (id: number ,student: Student)=>{
-  const index = students.findIndex((s)=> s.id === id);
-  students[index] = {...students[index], ...student};
-  return Promise.resolve();
+const updateStudent = async (id: number ,student: Student)=>{
+  
+  
+  await getConnection()
+    .createQueryBuilder()
+    .update(Student)
+    .set(student)
+    .where("id = :id", { id: id })
+    .execute();
+  
 };
 
-const deleteStudent = (id: number)=> {
-  const index = students.findIndex((s)=> s.id === id);
-  students.splice(index,1)
+const deleteStudent = async (id: number)=> {
+  
+  await getConnection()
+    .createQueryBuilder()
+    .delete()
+    .from(Student)
+    .where("id = :id", { id: id })
+    .execute();
 
-  return Promise.resolve(); 
 }
 
-const getStudent = (id:number) =>{
-  let student = students.find(s => s.id === id);
-  return Promise.resolve(Object.freeze(student));
-  
+const getStudent = async (id:number) =>{
+
+ return await getConnection().getRepository(Student).findOne({ where:
+    { "id": id }
+})
+
+
 }
 
 

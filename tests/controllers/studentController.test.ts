@@ -1,5 +1,60 @@
+import { StatusCodes } from 'http-status-codes';
+import { Student } from './../../src/entities/Student';
 import app from "..";
 import supertest from "supertest";
+
+jest.mock("../../src/db/students", () => {
+  const originalModule = jest.requireActual("../../src/db/students");
+
+  const students: Student[] = [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john.doe@example.com",
+      city: "Belo Horizonte",
+      birth: new Date("11/13/1999"),
+    },
+
+
+
+
+  ];
+
+
+  const newStudent = {
+    id: 2,
+    name: "John Doe 2",
+    email: "john.doe@example.com",
+    city: "Belo Horizonte",
+    birth: new Date("11/13/1999").toISOString(),
+  };
+
+
+
+  const updateStudent = [
+    {
+      id:1,
+      name: "Ian",
+      email: "caminhasian@gmail.com",
+      city: "Belo Horizonte",
+      birth: new Date("11/13/1994").toISOString(),
+
+    }
+
+  ];
+
+  return {
+    __esModule: true, 
+    ...originalModule,
+    getStudents: () => Promise.resolve(students),
+    addStudent:(student:Student) => Promise.resolve(newStudent) ,
+    updateStudent: (id: number ,student: Student)=> Promise.resolve(StatusCodes.OK),
+    deleteStudent: (id: number) => Promise.resolve("ok"),
+    getStudent: (id:number) => Promise.resolve(StatusCodes.OK),
+  }
+
+
+})
 
 describe("Test student requests", () => {
   it("should return the example student", async () => {
@@ -15,6 +70,7 @@ describe("Test student requests", () => {
             city: "Belo Horizonte",
             birth: new Date("11/13/1999").toISOString(),
           },
+
         ])
       );
   });
@@ -22,7 +78,7 @@ describe("Test student requests", () => {
   it("should create a new student", async () => {
     const newStudent = {
       name: "John Doe 2",
-      email: "john.doe.2@example.com",
+      email: "john.doe@example.com",
       city: "Belo Horizonte",
       birth: new Date("11/13/1999").toISOString(),
     };
@@ -66,27 +122,23 @@ await supertest(app)
 .get("/students")
 .expect(200)
 .then((res) =>
-  expect(res.body[0]).toMatchObject({
+  expect(res.body[0]).toMatchObject([{
     id:1,
     name: "Ian",
     email: "caminhasian@gmail.com",
     city: "Belo Horizonte",
-    birth: new Date("11/13/1994").toISOString(),
+    birth: new Date("11/13/1994"),
 
-  })
+  },
+ 
+]
+    
+  )
 
 );
 
 
 });
-
-
-
-
-
-
-
-
 
 
 });

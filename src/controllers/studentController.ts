@@ -23,18 +23,15 @@ export class StudentsController {
 
   async update(req: Request, res: Response){
     const id = await parseInt(req.params.id,10)
-    await console.log(id)
     await StudentsDB.updateStudent(id, req.body)
     return res.status(StatusCodes.OK).json('ok')
   }
 
   async delete(req: Request, res: Response){
-    const id = await parseInt(req.params.id,10)
+    const id = await parseInt(req.params.studentId,10)
     await StudentsDB.deleteStudent(id)
     return res.status(StatusCodes.OK).json('ok')
   }
-
-
 
 
 }
