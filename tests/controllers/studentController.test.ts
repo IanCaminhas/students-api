@@ -15,9 +15,6 @@ jest.mock("../../src/db/students", () => {
       birth: new Date("11/13/1999"),
     },
 
-
-
-
   ];
 
 

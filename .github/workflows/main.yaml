@@ -40,3 +40,22 @@ jobs:
         - run: npm ci
         - run: npm run build
         - run: ls D:\a\students-api\students-api\dist
+
+
+  build_heroku:
+     runs-on: windows-latest
+     - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_app_name: ian-students-api 
+          heroku_email: caminhasian@gmail.com
+          env_file: ".env"
+        env:
+         NODE_ENV: development
+          HD_FIREBASE_API_KEY: postgres://hemfjdfanpeodc:6fb291bee502258e3f6c6de3bdb50cb5a0bfd20fa3105a5db0ba3bf8fc717278@ec2-3-221-140-141.compute-1.amazonaws.com:5432/d12c4kmseto7p3
+
+          
+
+
+
+
+  
