@@ -42,12 +42,13 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_app_name:  ian-students-api 
-          env_file: ".env"
-        env:
-          HD_FIREBASE_API_KEY: ${{secrets.DATABASE_URL}}
           heroku_email: ${{secrets.HEROKU_email}}
           heroku_password: ${{secrets.HEROKU_password}}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          env_file: ".env"
+        env:
+          HD_FIREBASE_API_KEY: ${{secrets.DATABASE_URL}}
+         
 
 
           
