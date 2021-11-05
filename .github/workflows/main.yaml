@@ -42,8 +42,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_app_name:  ian-students-api 
-          heroku_email: ${{secrets.HEROKU_email}}
-          heroku_password: ${{secrets.HEROKU_password}}
+          heroku_email: caminhasian@gmail.com
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
      
          
