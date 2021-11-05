@@ -17,13 +17,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@octocat'
       - run: npm install
-
-  Test:
-      runs-on: windows-latest 
-      steps:
-        - uses: actions/checkout@v2
-        - run: npm install --save-dev jest
-        - run: npm run test
   
   build:
       runs-on: windows-latest 
@@ -46,11 +39,11 @@ jobs:
     runs-on: windows-latest 
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name:  ian-students-api #Must be unique in Heroku
-          heroku_email: caminhaian@gmail.com
+          heroku_app_name:  ian-students-api 
+          heroku_email: caminhasian@gmail.com
           env_file: ".env"
         env:
           HD_FIREBASE_API_KEY: ${{secrets.DATABASE_URL}}
