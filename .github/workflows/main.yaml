@@ -1,6 +1,6 @@
 name: Students API Pipeline
- 
-           
+
+
 on:
   push:
     branches:
@@ -10,6 +10,7 @@ jobs:
     runs-on: [windows-latest]
     steps:
     - uses: actions/checkout@master
+    - uses: akhileshns/heroku-deploy@v3.12.12
     - name: Login to Heroku
       env: 
         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
