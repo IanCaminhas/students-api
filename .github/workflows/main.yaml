@@ -7,15 +7,15 @@ jobs:
 
 
  heroku-deploy:
-    run-on: ubuntu-latest
+    run-on: windows-latest
     steps:
       -uses: actions/checkout@master
       -name: Login to Heroku
-        env:
+       env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: heroku container:login
       -name: Build and Push
-        env:
+       env:
            HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: heroku container:push -a e-comanda web 
       -name: Release
