@@ -11,6 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_app_name: ian-students-api
+        heroku_email: caminhasian@gmail.com
     - name: Login to Heroku
       env: 
         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
