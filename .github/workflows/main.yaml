@@ -4,46 +4,27 @@ on:
   push:
     branch: main
 jobs:
-  dependencies:
-    runs-on: windows-latest 
-    permissions: 
-      contents: read
-      packages: write 
+
+ heroku-deploy:
+    run-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@octocat'
-      - run: npm install
-  
-  build:
-      runs-on: windows-latest 
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v1
-        - run: npm ci
-        - run: npm run build
-
-  listing_paste_dist:
-        runs-on: windows-latest 
-        steps:
-        - uses: actions/checkout@v2
-        - run: npm ci
-        - run: npm run build
-        - run: ls D:\a\students-api\students-api\dist
+      -uses: actions/checkout@master
+      -name: Login to Heroku
+        env:
+          HEROKU_API_KEY: ${{secrets. HEROKU_API_KEY}}
+        run: heroku container:login
+      -name: Build and Push
+        env:
+           HEROKU_API_KEY: ${{secrets. HEROKU_API_KEY}}
+        run: heroku container:push -a e-comanda web 
+      -name: Release
+       env:
+          HEROKU_API_KEY: ${{secrets. HEROKU_API_KEY}}
+         run: heroku container:push -a e-comanda web
 
 
-  build_heroku:
-    runs-on: windows-latest 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 
-        with:
-          heroku_app_name:  ian-students-api 
-          heroku_email: caminhasian@gmail.com
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+
+
      
          
 
