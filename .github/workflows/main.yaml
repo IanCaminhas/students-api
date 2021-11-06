@@ -1,29 +1,26 @@
 name: Students API Pipeline
-
+      
 on:
   push:
-    branch: main
+    branches:
+      - master
 jobs:
-
- heroku-deploy:
-    run-on: windows-latest
+  heroku-deploy:
+    runs-on: [windows-latest]
     steps:
-      -uses: actions/checkout@master
-      -name: Login to Heroku
-       env:
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run: heroku container:login
-      -name: Build and Push
-       env:
-           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run: heroku container:push -a e-comanda web 
-      -name: Release
-       env:
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run: heroku container:push -a e-comanda web
-
-
-
+      uses: actions/checkout@master
+    - name: Login to Heroku
+      env: 
+        HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      run: heroku container:login
+    - name: Build and Push
+      env: 
+        HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      run: heroku container:push -a e-comanda web
+    - name: Release
+      env:
+         HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+       run: heroku container:release -a e-comanda web
 
      
          
